@@ -146,10 +146,29 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         });
 
         if(appointment.getPriority()>0) {
-            String curD = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date.getTime());
-            Toast.makeText(context, curD, Toast.LENGTH_SHORT).show();
-            if(curD.equalsIgnoreCase(appointment.getDate()))
+            Date date1 = new Date();
+            String curD = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date1.getTime());
+            if(curD.equalsIgnoreCase(appointment.getDate())) {
                 holder.tvPT.setVisibility(View.VISIBLE);
+                int h = 11;
+                int m = 0;
+                String xx = "AM";
+                int p = appointment.getPriority();
+                p--;
+                m += p*20;
+                h += m/60;
+                m = m%60;
+                if(h>=12)
+                {
+                    xx = "PM";
+                }
+                if(h>12)
+                {
+                    h-=12;
+                }
+                holder.tvPT.setText(h+":"+m+" "+xx);
+                //Toast.makeText(context, curD+" "+appointment.getDate(), Toast.LENGTH_SHORT).show();
+            }
             else
                 holder.tvPT.setVisibility(View.GONE);
         }
