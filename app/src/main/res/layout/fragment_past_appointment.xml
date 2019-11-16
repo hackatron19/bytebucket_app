@@ -9,7 +9,7 @@
         android:id="@+id/past_appointments_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="100dp"/>
+        />
 
     <RelativeLayout
         android:id="@+id/appointments_empty_layout"

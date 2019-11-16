@@ -46,8 +46,16 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         holder.tvDoctorName.setText(doctor.getName());
         holder.tvSpeciality.setText(doctor.getSpeciality());
         holder.tvPhone.setText(doctor.getMobile());
-        String strRating = Integer.toString(doctor.getRating());
-        holder.tvRating.setText(strRating);
+        if(doctor.getCount()!=0){
+            float ratingVal = doctor.getRating()/doctor.getCount();
+            String formattedRating = String.format("%.01f", ratingVal);
+            holder.tvRating.setText(formattedRating);
+        } else {
+            holder.tvRating.setText(Integer.toString(doctor.getRating()));
+        }
+
+
+
 
         holder.llDoctorElement.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -47,7 +47,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/doctor_details_name"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
                 android:padding="2dp"
                 android:text="General Physician"
                 android:textColor="@android:color/darker_gray"
@@ -73,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/doctor_details_profile_image"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="43dp"
+            android:layout_marginTop="39dp"
             android:layout_marginRight="4dp"
             android:background="@drawable/button_background"
             android:foreground="?android:attr/selectableItemBackground"
@@ -94,7 +93,7 @@
         <LinearLayout
             android:id="@+id/doctor_details_follower_details"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/doctor_details_horizontal_line"
             android:layout_marginTop="4dp"
             android:orientation="horizontal"
@@ -173,7 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_below="@+id/doctor_details_follower_details"
-            android:background="#eeeeee" />
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:layout_width="match_parent"
