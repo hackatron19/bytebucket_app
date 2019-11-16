@@ -28,10 +28,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import static java.util.Collections.sort;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,6 +92,7 @@ public class TodayAppointmentFragment extends Fragment {
                     if(date.equals(appointmentDate))
                         appointments.add(appointment);
                 }
+                sort(appointments);
                 if(appointments.size()==0)
                     emptyRL.setVisibility(View.VISIBLE);
                 else
@@ -96,6 +103,22 @@ public class TodayAppointmentFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+    void sort(List<Appointment> appointmentList) {
+        //Comparator for date
+        Collections.sort(appointmentList, new Comparator<Appointment>() {
+            @Override
+            public int compare(Appointment a1, Appointment a2) {
+                int p1 = a1.getPriority();
+                int p2 = a2.getPriority();
+                if(p1<p2)
+                    return -1;
+                else if(p1>p2)
+                    return 1;
+                else
+                    return  0;
             }
         });
     }
