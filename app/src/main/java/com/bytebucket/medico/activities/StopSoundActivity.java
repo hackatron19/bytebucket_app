@@ -13,6 +13,10 @@ public class StopSoundActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_sound);
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle("Stop the Alarm");
+        }
     }
 
     public void stop(View view) {

@@ -27,6 +27,11 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         String strObj = getIntent().getStringExtra("doctor");
         final Doctor doctor = gson.fromJson(strObj, Doctor.class);
 
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle(doctor.getName());
+        }
+
         tvName.setText(doctor.getName());
         tvNumber.setText(doctor.getMobile());
         tvSpecility.setText(doctor.getSpeciality());

@@ -31,6 +31,11 @@ public class RateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
 
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle("Rate");
+        }
+
         ratingBar = findViewById(R.id.rating_bar);
         sRate = findViewById(R.id.rate_submit);
 

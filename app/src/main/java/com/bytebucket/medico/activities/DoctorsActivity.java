@@ -34,6 +34,10 @@ public class DoctorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors);
 
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle("Doctors");
+        }
 
         init();
 

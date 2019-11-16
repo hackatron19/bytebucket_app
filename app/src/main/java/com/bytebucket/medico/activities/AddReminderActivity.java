@@ -26,6 +26,11 @@ public class AddReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle("Add Reminder");
+        }
+
         pillName = findViewById(R.id.pill_reminder_pill_name);
         pillDosage = findViewById(R.id.pill_reminder_pill_dosage);
         pillFrequency = findViewById(R.id.pill_reminder_pill_frequency);

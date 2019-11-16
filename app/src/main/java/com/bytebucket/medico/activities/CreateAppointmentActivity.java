@@ -28,6 +28,11 @@ public class CreateAppointmentActivity extends AppCompatActivity implements Date
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_appointment);
 
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setTitle("Create an Appointment");
+        }
+
         Bundle extras = getIntent().getExtras();
         final String dfuid = extras.getString("dfuid");
 
