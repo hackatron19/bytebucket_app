@@ -4,10 +4,26 @@ public class Doctor {
     Address address;
     int count, rating;
 
+    String opening_time;
+    int average_time;
     String mobile, name, pdf, speciality, fuid;
     boolean verified;
 
     public Doctor() {
+    }
+
+    public Doctor(Address address, int count, int rating, String opening_time, int average_time, String mobile, String name, String pdf, String speciality, String fuid, boolean verified) {
+        this.address = address;
+        this.count = count;
+        this.rating = rating;
+        this.opening_time = opening_time;
+        this.average_time = average_time;
+        this.mobile = mobile;
+        this.name = name;
+        this.pdf = pdf;
+        this.speciality = speciality;
+        this.fuid = fuid;
+        this.verified = verified;
     }
 
     public String getFuid() {
@@ -16,18 +32,6 @@ public class Doctor {
 
     public void setFuid(String fuid) {
         this.fuid = fuid;
-    }
-
-    public Doctor(Address address, int count, int rating, String mobile, String name, String pdf, String speciality, String fuid, boolean verified) {
-        this.address = address;
-        this.count = count;
-        this.rating = rating;
-        this.mobile = mobile;
-        this.name = name;
-        this.pdf = pdf;
-        this.speciality = speciality;
-        this.fuid = fuid;
-        this.verified = verified;
     }
 
     public Address getAddress() {
@@ -92,5 +96,21 @@ public class Doctor {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public String getOpening_time() {
+        return opening_time;
+    }
+
+    public void setOpening_time(String opening_time) {
+        this.opening_time = opening_time;
+    }
+
+    public int getAverage_time() {
+        return average_time;
+    }
+
+    public void setAverage_time(int average_time) {
+        this.average_time = average_time;
     }
 }
