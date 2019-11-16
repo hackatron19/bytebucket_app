@@ -3,9 +3,10 @@ package com.bytebucket.medico.modals;
 public class Appointment {
 
     String problem, date;
-    String dfuid, pfuid,appointmentId;
+    String dfuid, pfuid, appointmentId;
     String status;
     boolean rate;
+    int priority;
 
     public Appointment() {
     }
@@ -18,6 +19,7 @@ public class Appointment {
         this.appointmentId = appointmentId;
         this.status = status;
         this.rate = rate;
+        this.priority = -1;
     }
 
     public String getAppointmentId() {
@@ -74,5 +76,13 @@ public class Appointment {
 
     public void setRate(boolean rate) {
         this.rate = rate;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

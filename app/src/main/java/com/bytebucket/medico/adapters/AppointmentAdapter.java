@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -144,6 +145,18 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             }
         });
 
+        if(appointment.getPriority()>0) {
+            String curD = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date.getTime());
+            Toast.makeText(context, curD, Toast.LENGTH_SHORT).show();
+            if(curD.equalsIgnoreCase(appointment.getDate()))
+                holder.tvPT.setVisibility(View.VISIBLE);
+            else
+                holder.tvPT.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.tvPT.setVisibility(View.GONE);
+        }
 
     }
 
@@ -169,6 +182,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         ImageView ivDelete;
         RelativeLayout rlDate;
         Button brate;
+        TextView tvPT;
 
         public AppointmentViewHolder(View v) {
             super(v);
@@ -181,6 +195,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             ivDelete = v.findViewById(R.id.single_appointment_delete);
             rlDate = v.findViewById(R.id.single_appointment_date_layout);
             brate = v.findViewById(R.id.single_appointment_rate);
+            tvPT = v.findViewById(R.id.probable_timing);
         }
     }
 }

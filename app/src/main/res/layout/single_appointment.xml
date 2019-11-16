@@ -59,10 +59,20 @@
             android:id="@+id/single_appointment_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rate"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:visibility="gone"/>
+            android:text="Rate"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/probable_timing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:hint="11:00 AM"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/single_appointment_status"
