@@ -46,6 +46,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         holder.tvHeading.setText(article.getHeading());
         holder.tvReadTime.setText(getReadTime(article.getDescription()));
         holder.tvDate.setText(article.getPostdate());
+        final int image = Constants.getRandomArticlePic();
+        holder.ivImageContent.setImageResource(image);
 
         holder.rlFullLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 readArticleIntent.putExtra("readtime", getReadTime(article.getDescription()));
                 readArticleIntent.putExtra("date",article.getPostdate());
                 readArticleIntent.putExtra("dfuid",article.getDfuid());
+                readArticleIntent.putExtra("image",image);
                 context.startActivity(readArticleIntent);
 
             }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bytebucket.medico.R;
 import com.bytebucket.medico.activities.DoctorDetailsActivity;
 import com.bytebucket.medico.modals.Doctor;
+import com.bytebucket.medico.utilities.Constants;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     @Override
     public void onBindViewHolder(final DoctorViewHolder holder, int position) {
         final Doctor doctor = doctors.get(position);
+        final int profilePic = Constants.getRandomProfilePic();
+        holder.civDoctorImage.setImageResource(profilePic);
         holder.tvDoctorName.setText(doctor.getName());
         holder.tvSpeciality.setText(doctor.getSpeciality());
         holder.tvPhone.setText(doctor.getMobile());
@@ -52,6 +55,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
                 Intent intent = new Intent(mContext, DoctorDetailsActivity.class);
                 Gson gson = new Gson();
                 intent.putExtra("doctor", gson.toJson(doctor));
+                intent.putExtra("image",profilePic);
                 Pair[] pairs = new Pair[4];
                 pairs[0] = new Pair<View, String>(holder.tvDoctorName, "DoctorNameTransition");
                 pairs[1] = new Pair<View, String>(holder.civDoctorImage, "ProfileImageTransition");

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bytebucket.medico.R;
+import com.bytebucket.medico.utilities.Constants;
 
 public class ReadArticleActivity extends AppCompatActivity {
 
@@ -36,8 +37,8 @@ public class ReadArticleActivity extends AppCompatActivity {
         tvDocName.setText(extras.getString("docname"));
         tvReadTime.setText(extras.getString("readtime"));
         tvDate.setText(extras.getString("date"));
-
-
+        ivArticleImage.setImageResource(extras.getInt("image"));
+        civDocImage.setImageResource(Constants.getRandomProfilePic());
 
 
 

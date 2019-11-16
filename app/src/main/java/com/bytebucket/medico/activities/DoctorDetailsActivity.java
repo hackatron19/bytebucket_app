@@ -17,13 +17,14 @@ public class DoctorDetailsActivity extends AppCompatActivity {
 
     Button bCreateAppointment;
     TextView tvName, tvNumber, tvSpecility;
+    de.hdodenhof.circleimageview.CircleImageView civProfileImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_details);
 
         init();
-
+        Bundle bundle = getIntent().getExtras();
         Gson gson = new Gson();
         String strObj = getIntent().getStringExtra("doctor");
         final Doctor doctor = gson.fromJson(strObj, Doctor.class);
@@ -37,6 +38,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         tvName.setText(doctor.getName());
         tvNumber.setText(doctor.getMobile());
         tvSpecility.setText(doctor.getSpeciality());
+        civProfileImage.setImageResource(bundle.getInt("image"));
 
         bCreateAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         tvName = findViewById(R.id.doctor_details_name);
         tvNumber =findViewById(R.id.doctor_details_phone);
         tvSpecility = findViewById(R.id.doctor_details_speciality);
+        civProfileImage = findViewById(R.id.doctor_details_profile_image);
 
     }
 
