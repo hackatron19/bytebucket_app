@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CreateAppointmentActivity"
+    android:padding="8dp">
+
+    <EditText
+        android:id="@+id/create_appointment_problem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="problem"/>
+
+    <EditText
+        android:id="@+id/create_appointment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Choose your date"
+        android:focusable="false"
+        android:layout_below="@+id/create_appointment_problem"
+        />
+
+    <Button
+        android:id="@+id/create_create_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>

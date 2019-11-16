@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".activities.ReadArticleActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/read_article_image"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_happiness"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:padding="4dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/read_article_credit"
+            android:layout_below="@+id/read_article_image"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+            android:text="Image from flaticon.com"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/read_article_heading"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_below="@+id/read_article_credit"
+            android:text="Phase 3 Efficacy Trial of Modified Vaccinia Ankara as a Vaccine against Smallpox"
+            android:textColor="@android:color/black"
+            app:autoSizeTextType="uniform"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/read_article_doctordetail_layout"
+            android:layout_below="@+id/read_article_heading">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/read_article_docimage"
+                android:layout_width="24dp"
+                android:layout_centerVertical="true"
+                android:layout_height="24dp"
+                android:src="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/read_article_docname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DoctorName"
+                android:layout_toEndOf="@id/read_article_docimage"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/black"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView
+                android:id="@+id/read_article_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:layout_toEndOf="@id/read_article_docname"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView
+                android:id="@+id/read_article_seperator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/read_article_date"
+                android:layout_centerInParent="true"
+                android:text="\u22C5"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/read_article_readtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" minute read"
+                android:layout_toEndOf="@id/read_article_seperator"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="8dp"/>
+
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/read_article_article"
+            android:layout_below="@+id/read_article_doctordetail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="The entire Content here"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

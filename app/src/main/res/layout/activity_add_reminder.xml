@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddReminderActivity">
+
+    <TimePicker
+        android:id="@+id/pill_reminder_tp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:timePickerMode="clock" />
+
+    <EditText
+        android:id="@+id/pill_reminder_pill_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pill_reminder_tp"
+        android:layout_marginStart="32dp"
+        android:hint="Pill Name" />
+
+    <EditText
+        android:id="@+id/pill_reminder_pill_dosage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pill_reminder_pill_name"
+        android:layout_marginStart="32dp"
+        android:hint="Pill Dosage" />
+
+    <EditText
+        android:id="@+id/pill_reminder_pill_frequency"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pill_reminder_pill_dosage"
+        android:layout_marginStart="32dp"
+        android:hint="Repeat after X hours"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/pill_reminder_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pill_reminder_pill_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="32dp"
+        android:text="ADD" />
+
+</RelativeLayout>

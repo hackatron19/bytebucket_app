@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    tools:context=".activities.DoctorsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:id="@+id/doctor_element">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/doctor_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:transitionName="ProfileImageTransition"
+            android:src="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
+
+
+            <TextView
+                android:id="@+id/doctor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctor Name"
+                android:transitionName="DoctorNameTransition"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                >
+
+                <TextView
+                    android:id="@+id/doctor_speciality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:ellipsize="end"
+                    android:padding="2dp"
+                    android:singleLine="true"
+                    android:text="This is the description of the doctor"
+                    android:transitionName="DoctorSpecialityTransition"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/doctor_phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/doctor_speciality"
+                    android:ellipsize="end"
+                    android:padding="2dp"
+                    android:singleLine="true"
+                    android:transitionName="DoctorPhoneTransition"
+                    android:text="This is the line 2 description of the doctor"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:id="@+id/doctor_rating"
+                    android:text="4.5"
+                    android:textAlignment="viewEnd"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

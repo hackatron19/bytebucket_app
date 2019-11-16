@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:descendantFocusability="blocksDescendants"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.DoctorDetailsActivity">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/doctor_details_profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:src="@color/colorAccent"
+            android:transitionName="ProfileImageTransition" />
+
+        <RelativeLayout
+            android:id="@+id/doctor_details_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/doctor_details_profile_image">
+
+            <TextView
+                android:id="@+id/doctor_details_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:padding="2dp"
+                android:text="Sanay Dev"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:transitionName="DoctorNameTransition" />
+
+
+            <TextView
+                android:id="@+id/doctor_details_speciality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/doctor_details_name"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="2dp"
+                android:text="General Physician"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:transitionName="DoctorSpecialityTransition" />
+
+            <TextView
+                android:id="@+id/doctor_details_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/doctor_details_speciality"
+                android:layout_marginLeft="16dp"
+                android:padding="2dp"
+                android:text="7903197762"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:transitionName="DoctorPhoneTransition" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/doctor_details_take_appointment"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/doctor_details_profile_image"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="43dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/button_background"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="4dp"
+            android:text="Book Appointment"
+            android:textColor="@color/colorAccent" />
+
+
+
+        <View
+            android:id="@+id/doctor_details_horizontal_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/doctor_details_layout"
+            android:layout_marginTop="8dp"
+            android:background="#c0c0c0" />
+
+        <LinearLayout
+            android:id="@+id/doctor_details_follower_details"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_below="@+id/doctor_details_horizontal_line"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                android:id="@+id/doctor_details_followers_count"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="24"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/doctor_details_followers_count"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/doctor_details_followers_count"
+                    android:text="Followers"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#c0c0c0"
+                android:layout_marginBottom="4dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/doctor_details_articles_count"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="24"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/doctor_details_articles_count"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/doctor_details_articles_count"
+                    android:text="Articles"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/doctor_details_featured_bar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/doctor_details_follower_details"
+            android:background="#eeeeee" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/doctor_details_follower_details"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_vertical"
+            android:text="Featured"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctor_details_doctors_featured"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@+id/doctor_details_featured_bar">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>
