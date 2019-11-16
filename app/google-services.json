@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "350182820310",
+    "firebase_url": "https://medico-test.firebaseio.com",
+    "project_id": "medico-test",
+    "storage_bucket": "medico-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350182820310:android:0238ae223a93a5a5d23c77",
+        "android_client_info": {
+          "package_name": "com.bytebucket.medico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350182820310-cjdf3vj3goe9s7d73p7kckn2thbrp79n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bytebucket.medico",
+            "certificate_hash": "2840f602c438b5030f481b1e2f430d5d13efede1"
+          }
+        },
+        {
+          "client_id": "350182820310-j1d5k7g6q4jclm9n5bu8enen1oh5sh6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4t1BtZ7IBTtVk5oc26Reh7Y6q96GGM3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350182820310-j1d5k7g6q4jclm9n5bu8enen1oh5sh6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
