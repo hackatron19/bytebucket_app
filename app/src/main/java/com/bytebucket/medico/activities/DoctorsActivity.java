@@ -2,6 +2,8 @@ package com.bytebucket.medico.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 
 public class DoctorsActivity extends AppCompatActivity {
 
-
+    ProgressBar progressBar;
     DatabaseReference dbref;
     private RecyclerView rvDoctorsList;
     private RecyclerView.Adapter mAdapter;
@@ -34,6 +36,8 @@ public class DoctorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors);
+
+        progressBar = findViewById(R.id.pb_doctors);
 
         if(getSupportActionBar()!=null)
         {
@@ -57,6 +61,7 @@ public class DoctorsActivity extends AppCompatActivity {
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
                 doctors.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Doctor doctor = ds.getValue(Doctor.class);
