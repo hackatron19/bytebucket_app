@@ -84,7 +84,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="16dp"
-            android:text="Status" />
+            android:hint="Status" />
 
 
         <RelativeLayout
@@ -101,7 +101,7 @@
                 android:layout_alignParentLeft="true"
                 android:ellipsize="end"
                 android:padding="2dp"
-                android:text="Doctor Name"
+                android:hint="Doctor Name"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -112,7 +112,7 @@
                 android:layout_below="@+id/single_appointment_detail_docname"
                 android:ellipsize="end"
                 android:padding="2dp"
-                android:text="Speciality"
+                android:hint="Speciality"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />
 
@@ -124,7 +124,7 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:padding="2dp"
-                android:text="Sample Problem Detail"
+                android:hint="Sample Problem Detail"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp" />
 

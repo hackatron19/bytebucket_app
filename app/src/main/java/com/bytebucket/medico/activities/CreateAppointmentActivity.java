@@ -1,6 +1,7 @@
 package com.bytebucket.medico.activities;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bytebucket.medico.R;
@@ -53,29 +55,47 @@ public class CreateAppointmentActivity extends AppCompatActivity implements Date
         bCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String problem = etProblem.getText().toString();
-                String date = etDate.getText().toString();
-                final String pfuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("appointments");
-                DatabaseReference docRef=dbRef.child("doctor").child(dfuid).child(date);
-                final String appointmentId= docRef.push().getKey();
-                final Appointment appointment = new Appointment(problem, date, dfuid, pfuid, appointmentId,"pending",false);
-                docRef.child(appointmentId).setValue(appointment).addOnSuccessListener(CreateAppointmentActivity.this, new OnSuccessListener<Void>() {
+                if(etProblem.getText().toString().equals("") || etDate.getText().toString().equals(""))
+                {
+                    Toast.makeText(CreateAppointmentActivity.this, "Fill all the fields above", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreateAppointmentActivity.this);
+                builder.setTitle("Pay fee for appointment");
+                StringBuilder sb = new StringBuilder();
+                sb.append("Confirm your appointment by paying the requested fee.\n Redirecting to payment gateway.");
+                builder.setMessage(sb.toString());
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onSuccess(Void aVoid) {
-                        DatabaseReference patRef = dbRef.child("patients").child(pfuid);
-                        patRef.child(appointmentId).setValue(appointment).addOnSuccessListener(CreateAppointmentActivity.this, new OnSuccessListener<Void>() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String problem = etProblem.getText().toString();
+                        String date = etDate.getText().toString();
+                        final String pfuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                        final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("appointments");
+                        DatabaseReference docRef=dbRef.child("doctor").child(dfuid).child(date);
+                        final String appointmentId= docRef.push().getKey();
+                        final Appointment appointment = new Appointment(problem, date, dfuid, pfuid, appointmentId,"pending",false);
+                        docRef.child(appointmentId).setValue(appointment).addOnSuccessListener(CreateAppointmentActivity.this, new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(CreateAppointmentActivity.this, "Appointment Created Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(CreateAppointmentActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivity(intent);
+                                DatabaseReference patRef = dbRef.child("patients").child(pfuid);
+                                patRef.child(appointmentId).setValue(appointment).addOnSuccessListener(CreateAppointmentActivity.this, new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(CreateAppointmentActivity.this, "Appointment Created Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(CreateAppointmentActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         });
                     }
                 });
+                builder.show();
+
 
 
 
