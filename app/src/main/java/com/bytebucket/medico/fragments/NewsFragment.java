@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.bytebucket.medico.R;
 import com.bytebucket.medico.activities.DoctorsActivity;
@@ -36,16 +37,15 @@ import java.util.ArrayList;
  */
 public class NewsFragment extends Fragment {
 
-
-    public NewsFragment() {
-        // Required empty public constructor
-    }
-
-
+    ProgressBar progressBar;
     RecyclerView rvArticles;
     ArrayList<Article> articles = new ArrayList<>();
     RecyclerView.LayoutManager layoutManager;
     ArticleAdapter mAdapter;
+
+    public NewsFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +59,7 @@ public class NewsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvArticles = view.findViewById(R.id.article_recycler);
         layoutManager = new LinearLayoutManager(getActivity());
+        progressBar = view.findViewById(R.id.pb_news);
 
         rvArticles.setHasFixedSize(true);
         rvArticles.setLayoutManager(layoutManager);
@@ -73,6 +74,7 @@ public class NewsFragment extends Fragment {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
                 articles.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Article article = ds.getValue(Article.class);

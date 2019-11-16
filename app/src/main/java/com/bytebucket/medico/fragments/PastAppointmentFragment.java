@@ -2,19 +2,10 @@ package com.bytebucket.medico.fragments;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.bytebucket.medico.R;
@@ -36,13 +27,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.Collections.sort;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PastAppointmentFragment extends Fragment {
 
+    ProgressBar progressBar;
     RecyclerView recyclerView;
     RelativeLayout emptyRL;
     DatabaseReference dbRef;
@@ -65,6 +63,8 @@ public class PastAppointmentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.past_appointments_rv);
         emptyRL = view.findViewById(R.id.appointments_empty_layout);
+        progressBar = view.findViewById(R.id.pb_past);
+
         String pfuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         Date date = new Date();
@@ -72,7 +72,7 @@ public class PastAppointmentFragment extends Fragment {
         dbRef = FirebaseDatabase.getInstance().getReference("appointments").child("patients").child(pfuid);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        appointmentAdapter = new AppointmentAdapter(getActivity(),appointments);
+        appointmentAdapter = new AppointmentAdapter(getActivity(), appointments);
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
         recyclerView.addItemDecoration(itemDecorator);
@@ -81,25 +81,25 @@ public class PastAppointmentFragment extends Fragment {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
                 appointments.clear();
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Appointment appointment = ds.getValue(Appointment.class);
                     String date = appointment.getDate();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                    Date d1,d2;
+                    Date d1, d2;
                     try {
                         d1 = sdf.parse(date);
                         d2 = sdf.parse(appointmentDate);
                         long t1 = d1.getTime();
                         long t2 = d2.getTime();
-                        if(t1<t2)
+                        if (t1 < t2)
                             appointments.add(appointment);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                 }
-                if(appointments.size()==0)
+                if (appointments.size() == 0)
                     emptyRL.setVisibility(View.VISIBLE);
                 else
                     emptyRL.setVisibility(View.GONE);
@@ -113,6 +113,7 @@ public class PastAppointmentFragment extends Fragment {
             }
         });
     }
+
     void sort(List<Appointment> appointmentList) {
         //Comparator for date
         Collections.sort(appointmentList, new Comparator<Appointment>() {

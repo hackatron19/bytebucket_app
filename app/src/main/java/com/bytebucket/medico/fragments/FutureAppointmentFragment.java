@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.bytebucket.medico.R;
@@ -44,6 +45,7 @@ public class FutureAppointmentFragment extends Fragment {
     AppointmentAdapter appointmentAdapter;
     ArrayList<Appointment> appointments = new ArrayList<>();
     RelativeLayout emptyRL;
+    ProgressBar progressBar;
 
     public FutureAppointmentFragment() {
         // Required empty public constructor
@@ -61,6 +63,8 @@ public class FutureAppointmentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.future_appointments_rv);
         emptyRL = view.findViewById(R.id.appointments_empty_layout);
+        progressBar = view.findViewById(R.id.pb_future);
+
         String pfuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         Date date = new Date();
@@ -77,6 +81,7 @@ public class FutureAppointmentFragment extends Fragment {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.GONE);
                 appointments.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Appointment appointment = ds.getValue(Appointment.class);

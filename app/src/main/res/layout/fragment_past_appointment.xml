@@ -36,4 +36,10 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/pb_past"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>
