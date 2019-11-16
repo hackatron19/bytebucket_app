@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         if(getSupportActionBar()!=null)
         {
             getSupportActionBar().setTitle(doctor.getName());
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         tvName.setText(doctor.getName());
@@ -52,5 +54,15 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         tvNumber =findViewById(R.id.doctor_details_phone);
         tvSpecility = findViewById(R.id.doctor_details_speciality);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -29,6 +30,7 @@ public class AddReminderActivity extends AppCompatActivity {
         if(getSupportActionBar()!=null)
         {
             getSupportActionBar().setTitle("Add Reminder");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         pillName = findViewById(R.id.pill_reminder_pill_name);
@@ -80,5 +82,15 @@ public class AddReminderActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

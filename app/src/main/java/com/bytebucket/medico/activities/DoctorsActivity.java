@@ -1,6 +1,7 @@
 package com.bytebucket.medico.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class DoctorsActivity extends AppCompatActivity {
         if(getSupportActionBar()!=null)
         {
             getSupportActionBar().setTitle("Doctors");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         init();
@@ -76,5 +78,15 @@ public class DoctorsActivity extends AppCompatActivity {
 
         rvDoctorsList = findViewById(R.id.doctors_list);
         dbref = FirebaseDatabase.getInstance().getReference("doctors");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

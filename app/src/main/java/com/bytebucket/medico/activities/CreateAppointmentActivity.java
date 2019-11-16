@@ -3,6 +3,7 @@ package com.bytebucket.medico.activities;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,6 +32,7 @@ public class CreateAppointmentActivity extends AppCompatActivity implements Date
         if(getSupportActionBar()!=null)
         {
             getSupportActionBar().setTitle("Create an Appointment");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         Bundle extras = getIntent().getExtras();
@@ -96,6 +98,16 @@ public class CreateAppointmentActivity extends AppCompatActivity implements Date
         month++;
         String dateStr = day + "-" + month + "-" + year;
         etDate.setText(dateStr);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
