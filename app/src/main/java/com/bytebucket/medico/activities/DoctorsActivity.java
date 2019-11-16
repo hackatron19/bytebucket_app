@@ -5,13 +5,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bytebucket.medico.R;
 import com.bytebucket.medico.adapters.DoctorAdapter;
 import com.bytebucket.medico.modals.Doctor;
@@ -22,6 +15,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DoctorsActivity extends AppCompatActivity {
 
@@ -39,8 +39,7 @@ public class DoctorsActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.pb_doctors);
 
-        if(getSupportActionBar()!=null)
-        {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Doctors");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -87,7 +86,7 @@ public class DoctorsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
