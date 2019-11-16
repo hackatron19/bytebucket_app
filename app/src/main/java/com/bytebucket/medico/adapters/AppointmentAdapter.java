@@ -1,6 +1,9 @@
 package com.bytebucket.medico.adapters;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bytebucket.medico.R;
 import com.bytebucket.medico.activities.RateActivity;
 import com.bytebucket.medico.modals.Appointment;
 import com.bytebucket.medico.modals.Doctor;
+import com.bytebucket.medico.utilities.AlarmReceiver;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +37,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder> {
 
@@ -102,12 +109,23 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             @Override
             public void onClick(View v) {
                 try {
-                    //delete doc side
-                    DatabaseReference adRef = FirebaseDatabase.getInstance().getReference("appointments").child("doctor").child(appointment.getDfuid()).child(appointment.getDate()).child(appointment.getAppointmentId());
-                    adRef.setValue(null);
-                    //delete patient side
-                    DatabaseReference apRef = FirebaseDatabase.getInstance().getReference("appointments").child("patients").child(appointment.getPfuid()).child(appointment.getAppointmentId());
-                    apRef.setValue(null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Delete your appointment");
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Money is refunded only in case of reject from doctors. Do you want cancel?");
+                    builder.setMessage(sb.toString());
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //delete doc side
+                            DatabaseReference adRef = FirebaseDatabase.getInstance().getReference("appointments").child("doctor").child(appointment.getDfuid()).child(appointment.getDate()).child(appointment.getAppointmentId());
+                            adRef.setValue(null);
+                            //delete patient side
+                            DatabaseReference apRef = FirebaseDatabase.getInstance().getReference("appointments").child("patients").child(appointment.getPfuid()).child(appointment.getAppointmentId());
+                            apRef.setValue(null);
+                        }
+                    });
+                    builder.show();
                 }
                 catch (Exception e)
                 {
