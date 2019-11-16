@@ -1,10 +1,12 @@
 package com.bytebucket.medico.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bytebucket.medico.R;
+import com.bytebucket.medico.activities.RateActivity;
 import com.bytebucket.medico.modals.Appointment;
 import com.bytebucket.medico.modals.Doctor;
 import com.google.firebase.database.DataSnapshot;
@@ -20,12 +23,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder> {
 
@@ -52,11 +57,11 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
         // Fetch and Parse the date
         String dateStr = appointment.getDate();
-        DateFormat dfMonthYear = new SimpleDateFormat("MMM yyyy");
-        DateFormat dfDate = new SimpleDateFormat("dd");
+        DateFormat dfMonthYear = new SimpleDateFormat("MMM yyyy",Locale.getDefault());
+        DateFormat dfDate = new SimpleDateFormat("dd",Locale.getDefault());
         Date date = null;
         try {
-            date = new SimpleDateFormat("dd-MM-yyyy").parse(dateStr);
+            date = new SimpleDateFormat("dd-MM-yyyy",Locale.getDefault()).parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -87,10 +92,10 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         changeColor(context, holder.tvStatus, appointment.getStatus());
 
         //ability to delete appointments
-        if(appointment.getStatus().equalsIgnoreCase("accepted"))
-            holder.ivDelete.setVisibility(View.GONE);
-        else
+        if(appointment.getStatus().equalsIgnoreCase("pending"))
             holder.ivDelete.setVisibility(View.VISIBLE);
+        else
+            holder.ivDelete.setVisibility(View.GONE);
         //delete when status is not accepted
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +114,36 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                 }
             }
         });
+
+
+        //rate implementation
+        Date curDate = new Date();
+        Date appointDate;
+        try {
+             appointDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(dateStr);
+            long t1 = curDate.getTime();
+            long t2 = appointDate.getTime()+24*60*60*1000;
+            if(t2<t1 && !appointment.isRate()) {
+                holder.brate.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                holder.brate.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        holder.brate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gson gson = new Gson();
+                Intent intent = new Intent(context, RateActivity.class);
+                intent.putExtra("appointment", gson.toJson(appointment));
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -133,6 +168,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         TextView tvDate, tvMonthYear, tvDocName, tvSpeciality, tvProblem, tvStatus;
         ImageView ivDelete;
         RelativeLayout rlDate;
+        Button brate;
 
         public AppointmentViewHolder(View v) {
             super(v);
@@ -144,7 +180,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             tvStatus = v.findViewById(R.id.single_appointment_status);
             ivDelete = v.findViewById(R.id.single_appointment_delete);
             rlDate = v.findViewById(R.id.single_appointment_date_layout);
-
+            brate = v.findViewById(R.id.single_appointment_rate);
         }
     }
 }

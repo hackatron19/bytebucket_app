@@ -5,17 +5,19 @@ public class Appointment {
     String problem, date;
     String dfuid, pfuid,appointmentId;
     String status;
+    boolean rate;
 
     public Appointment() {
     }
 
-    public Appointment(String problem, String date, String dfuid, String pfuid, String appointmentId, String status) {
+    public Appointment(String problem, String date, String dfuid, String pfuid, String appointmentId, String status, boolean rate) {
         this.problem = problem;
         this.date = date;
         this.dfuid = dfuid;
         this.pfuid = pfuid;
         this.appointmentId = appointmentId;
         this.status = status;
+        this.rate = rate;
     }
 
     public String getAppointmentId() {
@@ -64,5 +66,13 @@ public class Appointment {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isRate() {
+        return rate;
+    }
+
+    public void setRate(boolean rate) {
+        this.rate = rate;
     }
 }

@@ -4,45 +4,43 @@
     android:layout_height="96dp">
 
 
-
     <RelativeLayout
         android:id="@+id/single_appointment_date_layout"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_margin="8dp"
         android:layout_centerVertical="true"
-        android:background="@drawable/textbox_background"
-        >
+        android:layout_margin="8dp"
+        android:background="@drawable/textbox_background">
 
 
         <TextView
             android:id="@+id/single_appointment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
+            android:text="18"
             android:textColor="@android:color/black"
-            android:text="18"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/single_appointment_month"
-            android:layout_below="@+id/single_appointment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/single_appointment_date"
             android:layout_centerInParent="true"
+            android:text="Nov, 2019"
             android:textColor="@android:color/black"
-            android:text="Nov, 2019"/>
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
         android:layout_centerVertical="true"
+        android:layout_margin="8dp"
         android:layout_toRightOf="@+id/single_appointment_date_layout"
 
         >
@@ -51,11 +49,20 @@
             android:id="@+id/single_appointment_delete"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="17dp"
+            android:layout_marginEnd="17dp"
             android:layout_marginBottom="14dp"
             android:src="@drawable/ic_delete" />
+
+        <Button
+            android:id="@+id/single_appointment_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/single_appointment_status"
@@ -82,38 +89,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Doctor Name"
-                android:textSize="16sp"
                 android:ellipsize="end"
                 android:padding="2dp"
+                android:text="Doctor Name"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/single_appointment_detail_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/single_appointment_detail_docname"
-                android:text="Speciality"
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
                 android:ellipsize="end"
-                android:padding="2dp"/>
+                android:padding="2dp"
+                android:text="Speciality"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/single_appointment_detail_problem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/single_appointment_detail_speciality"
-                android:text="Sample Problem Detail"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"
-                android:lines="2"
                 android:ellipsize="end"
-                android:padding="2dp"/>
+                android:lines="2"
+                android:padding="2dp"
+                android:text="Sample Problem Detail"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
 
         </RelativeLayout>
-
 
 
     </RelativeLayout>

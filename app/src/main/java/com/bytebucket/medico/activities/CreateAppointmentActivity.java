@@ -53,7 +53,7 @@ public class CreateAppointmentActivity extends AppCompatActivity implements Date
                 final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("appointments");
                 DatabaseReference docRef=dbRef.child("doctor").child(dfuid).child(date);
                 final String appointmentId= docRef.push().getKey();
-                final Appointment appointment = new Appointment(problem, date, dfuid, pfuid, appointmentId,"pending");
+                final Appointment appointment = new Appointment(problem, date, dfuid, pfuid, appointmentId,"pending",false);
                 docRef.child(appointmentId).setValue(appointment).addOnSuccessListener(CreateAppointmentActivity.this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
