@@ -16,9 +16,10 @@
         android:id="@+id/pill_reminder_fab"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_margin="2dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_add_pill"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentEnd="true"
+        />
 
 </RelativeLayout>
