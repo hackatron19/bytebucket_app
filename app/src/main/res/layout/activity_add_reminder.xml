@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pill_reminder_pill_name"
         android:layout_marginStart="32dp"
-        android:hint="Pill Dosage" />
+        android:inputType="number"
+        android:hint="Pill Dosage(in mG)" />
 
     <EditText
         android:id="@+id/pill_reminder_pill_frequency"
@@ -36,6 +37,7 @@
         android:layout_below="@id/pill_reminder_pill_dosage"
         android:layout_marginStart="32dp"
         android:hint="Repeat after X hours"
+
         android:inputType="number"/>
 
     <Button

@@ -2,6 +2,10 @@ package com.bytebucket.medico.utilities;
 
 import com.bytebucket.medico.R;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Constants {
     final public static int WORDS_PER_MINUTE = 150;
     final public static int[] PROFILE_IMAGES = {
@@ -36,4 +40,8 @@ public class Constants {
         int randomInt = (int)(Math.random() * ((len - 0)));
         return ARTICLE_IMAGES[randomInt];
     }
+
+    public static String MEDICINE_NAME = "test";
+    public static int DOSAGE = 10;
+
 }

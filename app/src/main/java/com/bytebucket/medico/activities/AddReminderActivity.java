@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bytebucket.medico.R;
 import com.bytebucket.medico.utilities.AlarmService;
+import com.bytebucket.medico.utilities.Constants;
 
 public class AddReminderActivity extends AppCompatActivity {
 
@@ -53,6 +54,12 @@ public class AddReminderActivity extends AppCompatActivity {
                     pillNameText = "Your Pill "+count;
                 }
                 String pillDosageText = pillDosage.getText().toString();
+
+                //edit here
+                if(Constants.DOSAGE < Integer.parseInt(pillDosageText))
+                    Toast.makeText(AddReminderActivity.this, "You are taking more medicine than what is recommended", Toast.LENGTH_SHORT).show();
+
+
                 if(pillDosageText.equalsIgnoreCase(""))
                 {
                     pillDosageText = "Take only required pill dosage.";
