@@ -41,6 +41,7 @@ public class Constants {
         return ARTICLE_IMAGES[randomInt];
     }
 
+
     public static String MEDICINE_NAME = "test";
     public static int DOSAGE = 10;
 
